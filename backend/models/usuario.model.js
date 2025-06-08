@@ -16,7 +16,8 @@ const SchemaUsuario = new mongoose.Schema({
         type: Date,
         max: Date.now
     }
-    
+}, {
+versionKey: false 
 });
 
 const usuario = mongoose.model('usuarios', SchemaUsuario); 

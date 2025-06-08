@@ -29,3 +29,25 @@ app.get('/usuarios/:doc', async (req, res)=>{
 app.listen(process.env.PORT, () => {
     console.log(`Servidor escuchando en http:localhost:${process.env.PORT}`);
 });
+app.post('/usuarios', async (req, res) => {
+    const nuevoUsuario = new modeloUsuario({
+        documento: req.body.doc,
+        nombreCompleto: req.body.name
+    })
+    nuevoUsuario.save()
+        .then(usuario => {
+            console.log(`usuario creado: ${usuario}`)
+        })
+        .catch(err => {
+            console.error(`Error al crear usuario: ${err}`)
+        })
+        res.json("Registro exitoso") 
+})
+// Terminar de hacer patch
+// app.patch('/usuarios', async (req, res)=>{
+//     const productoEditado = {
+//         documento: req.body.doc,
+//         nombreCompleto: req.body.name
+//     }
+//     let insercion = await modeloUsuario.create(nuevoUsuario)
+// })
